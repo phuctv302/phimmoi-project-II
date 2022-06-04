@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>24 TV CANLI YAYIN</title>
+  
+
+  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+  <script src="https://unpkg.com/video.js/dist/video.js"></script>
+  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+   
+</head>
+<body>
+  <video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="auto"
+  data-setup='{}'>
+    <source src="http://akm-cdn-play.loklok.tv/4866a4bffa80420e8efd6c7eb3b2e666/2b3fddc2584e490cb5e6992047cc877a-9f3bb122a8d272ff45d9ecaf716ba5f5-sd.m3u8?hdnts=exp=1654346065-acl=/*-hmac=a4a7f2d884c9b2ae73ccc4e2ed64c58a199bcf647db6c1e3eec5c8298f67e4fc" type="application/x-mpegURL">
+  </video>
+  
+<script>
+var player = videojs('my_video_1');
+player.play();
+</script>
+  
+</body>
+</html>
