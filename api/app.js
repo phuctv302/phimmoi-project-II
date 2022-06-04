@@ -15,6 +15,7 @@ const globalErrorHandler = require('./controller/errorController');
 
 const userRouter = require('./routes/userRoutes');
 const movieRouter = require('./routes/movieRoutes');
+const categoryRouter = require('./routes/categoryRoutes');
 
 const app = express();
 
@@ -68,6 +69,7 @@ app.use(compression());
  */
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/movies', movieRouter);
+app.use('/api/v1/categories', categoryRouter);
 
 
 

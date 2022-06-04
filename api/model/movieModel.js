@@ -5,20 +5,23 @@ const movieSchema = new mongoose.Schema(
         name: String,
         isSeries: Boolean,
         image: String,
-        category_id: [{ type: mongoose.Schema.ObjectId }],
+        category_ids: [{ type: mongoose.Schema.ObjectId, ref: 'Category' }],
         company: String,
         description: String,
         actors: [{ name: String }],
         director: String,
-        country: [String],
+        countries: [String],
         year: Number,
-        video: String,
-        trailer: String,
+        videoUrl: String,
+
         createdAt: {
             type: Date,
             default: new Date(Date.now()),
         },
-
+        updatedAt: {
+            type: Date,
+            default: new Date(Date.now()),
+        },
         data: Object,
     },
     {

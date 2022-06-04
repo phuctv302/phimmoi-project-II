@@ -5,6 +5,7 @@ const APIFeature = require('../utils/apiFeature');
 const User = require('../model/userModel');
 
 /* CURD */
+/* GET ALL USERS */
 exports.getAllUsers = catchAsync(async (req, res, next) => {
     const apiFeature = new APIFeature(User.find(), req.query)
         .filter()
@@ -16,12 +17,14 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 
     res.status(200).json({
         status: 'success',
+        result: users.length,
         data: {
             users
         }
     })
 });
 
+/* GET USER BY ID */
 exports.getUser = catchAsync(async(req, res, next) => {
     const user = await User.findOne({id: req.params.id});
 

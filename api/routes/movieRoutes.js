@@ -2,8 +2,9 @@ const express = require('express');
 
 const movieController = require('../controller/movieController');
 
-const router = express.Router();
+const router = express.Router({mergeParams: true}); // allow using params from other router
 
+// get random movie
 router.get('/random', movieController.getRandomMovie);
 
 /* CRUD */
@@ -14,6 +15,7 @@ router
 router
     .route('/:id')
     .get(movieController.getMovie)
+    .post(movieController.addMovieInCategory)
     .patch(movieController.updateMovie)
     .delete(movieController.deleteMovie);
 

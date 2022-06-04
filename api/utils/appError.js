@@ -1,3 +1,10 @@
+
+/**
+ * @desc a custom Error class
+ * 
+ * @param {String} message - error message
+ * @param {int} statusCode - status code of error
+ */
 class AppError extends Error {
     constructor(message, statusCode){
         super(message)

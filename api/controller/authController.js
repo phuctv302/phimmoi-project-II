@@ -107,6 +107,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     createSendToken(newUser, 201, res);
 });
 
+/* LOG USER IN */
 exports.login = catchAsync(async (req, res, next) => {
     // Get email & password from input
     const { email, password } = req.body;
@@ -123,6 +124,7 @@ exports.login = catchAsync(async (req, res, next) => {
     createSendToken(user, 200, res);
 });
 
+/* LOG USER OUT */
 exports.logout = (req, res, next) => {
     res.cookie('jwt', 'logged_out', {
         expires: new Date(Date.now() + 10 * 1000),
