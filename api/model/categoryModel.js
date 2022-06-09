@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const categorySchema = new mongoose.Schema({
     name: String,
-    movie_ids: [
+    movies: [
         {
             type: mongoose.Schema.ObjectId,
             ref: 'Movie'

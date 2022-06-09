@@ -35,6 +35,7 @@ const createSendToken = (user, statusCode, res) => {
 
     // remove password from output
     user.password = undefined;
+    user.passwordConfirm = undefined;
 
     res.status(statusCode).json({
         status: 'success',
@@ -117,6 +118,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
     // check password
     if (!user || !(await user.correctPassword(password, user.password))) {
+        console.log(user);
         return next(new AppError('Incorrect email or password', 400));
     }
 

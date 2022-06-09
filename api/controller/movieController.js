@@ -7,20 +7,10 @@ const Category = require('../model/categoryModel');
 
 // GET RANDOM MOVIE BY TYPE (SERIES OR NOT)
 exports.getRandomMovie = catchAsync(async (req, res, next) => {
-    const { type } = req.query;
 
-    let movie;
-    if (type === 'series') {
-        movie = await Movie.aggregate([
-            { $match: { isSeries: true } },
-            { $sample: { size: 1 } },
-        ]);
-    } else {
-        movie = await Movie.aggregate([
-            { $match: { isSeries: false } },
-            { $sample: { size: 1 } },
-        ]);
-    }
+    const  movie = await Movie.aggregate([
+        { $sample: { size: 1 } },
+    ]);
 
     res.status(200).json({
         status: 'success',
@@ -45,7 +35,7 @@ exports.addMovieInCategory = catchAsync(async(req, res, next) => {
         return next(new AppError('Movie exists in this category!', 400));
     }
     category.movies.push(id);
-    movie.category_ids.push(categoryId);
+    movie.categories.push(categoryId);
 
     await category.save();
     await movie.save();
@@ -64,7 +54,7 @@ exports.getAllMovies = catchAsync(async (req, res, next) => {
 
     let filter = {};
     if (req.params.categoryId){
-        filter = {categoryId: req.params.categoryId}
+        filter = {categories: req.params.categoryId}
     }
 
     const apiFeature = new APIFeature(Movie.find(filter), req.query)
@@ -151,7 +141,7 @@ exports.deleteMovie = catchAsync(async (req, res, next) => {
         const movie = await Movie.findById(req.params.id);
         if (!movie) return next(new AppError('No movie found!', 404));
 
-        movie.category_ids = movie.category_ids.filter(e => e != category.id);
+        movie.categories = movie.categories.filter(e => e != category.id);
         category.movies = category.movies.filter(e => e != movie.id);
 
         await movie.save();
