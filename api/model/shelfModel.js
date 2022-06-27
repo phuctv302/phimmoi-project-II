@@ -7,7 +7,10 @@ const shelfSchema = new mongoose.Schema({
             ref: 'Movie',
         },
     ],
-    user: mongoose.Schema.ObjectId,
+    user: {
+		type: mongoose.Schema.ObjectId,
+		ref: 'User'
+	},
 });
 
 const Shelf = mongoose.model('Shelf', shelfSchema);

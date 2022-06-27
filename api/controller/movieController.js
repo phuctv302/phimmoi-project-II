@@ -4,6 +4,69 @@ const APIFeature = require('../utils/apiFeature');
 
 const Movie = require('../model/movieModel');
 const Category = require('../model/categoryModel');
+const Shelf = require('../model/shelfModel');
+
+// CRUD WITH SHELF
+exports.addMovieToShelf = catchAsync(async (req, res, next) => {
+
+	const movie = await Movie.findById(req.params.id);
+	if (!movie) return next(new AppError('No movie found'));
+
+	let shelf = await Shelf.findOne({user: req.user.id});
+	if (!shelf){
+		shelf = await Shelf.create({user: req.user.id});
+	}
+
+	if (shelf.movies.includes(movie.id)){
+        return next(new AppError('Movie exists in your shelf!', 400));
+    }
+	
+	shelf.movies.push(movie.id);
+	await shelf.save();
+
+	res.status(200).json({
+		status: 'success',
+		data: {
+			shelf
+		}
+	})
+});
+
+exports.removeMovieFromShelf = catchAsync(async(req, res, next) => {
+
+	const movie = await Movie.findById(req.params.id);
+	if (!movie) return next(new AppError('No movie found'));
+	
+	const shelf = await Shelf.findOne({user: req.user.id});
+
+	if (!shelf.movies.includes(movie.id)){
+        return next(new AppError('Movie not exists in your shelf!', 400));
+    }
+
+	// remove
+	shelf.movies = shelf.movies.filter(e => e != movie.id);
+	await shelf.save();
+
+	res.status(200).json({
+		status: 'success',
+		data: {
+			shelf
+		}
+	})
+});
+
+exports.getMoviesInShelf = catchAsync(async(req, res, next) => {
+
+	const shelf = await Shelf.findOne({user: req.user.id}).populate('movies');
+
+	res.status(200).json({
+		status: 'success',
+		result: shelf.movies.length,
+		data: {
+			movies: shelf.movies
+		}
+	})
+})
 
 // GET RANDOM MOVIE BY TYPE (SERIES OR NOT)
 exports.getRandomMovie = catchAsync(async (req, res, next) => {

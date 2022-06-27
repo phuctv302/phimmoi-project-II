@@ -51,13 +51,10 @@ const createSendToken = (user, statusCode, res) => {
 exports.protect = catchAsync(async (req, res, next) => {
     // Get token and check
     let token;
-    if (
-        req.headers.authorization &&
-        req.headers.authorization.startsWith('Bearer')
-    ) {
-        token = req.headers.authorization.spit(' ')[1];
-    } else if (req.cookie.jwt) {
-        token = req.cookie.jwt;
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+        token = req.headers.authorization.split(' ')[1];
+    } else if (req.cookies.jwt) {
+        token = req.cookies.jwt;
     }
     if (!token) {
         return next(
@@ -72,8 +69,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
     // Check if user exists
-    const currentUser = await User.findOne({ id: decoded.id });
-    if (!currentUser) {
+    const currentUser = await User.findById(decoded.id);
+    if (!(currentUser)) {
         return next(
             new AppError('The user belong to the token no longer exists!', 401)
         );
