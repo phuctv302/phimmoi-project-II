@@ -17,9 +17,9 @@ const userSchema = new mongoose.Schema(
         email: {
             type: String,
             required: [true, 'Please provide us your name!'],
-            unique: true,
+            unique: [true, 'User with this email has already existed!'],
             lowercase: true,
-            validate: [validator.isEmail, 'Please provide us your email!'],
+            validate: [validator.isEmail, 'Please provide us a valid email!'],
         },
         password: {
             type: String,
@@ -55,10 +55,10 @@ const userSchema = new mongoose.Schema(
 );
 
 /* HASH PASSWORD WHEN CREATING NEW USER || CHANGE PASSWORD*/
-userSchema.pre('save', function(next){
-    if (!this.isModified('password')) return next();
+userSchema.pre('save', async function(next){
+    if (!this.isNew || !this.isModified('password')) return next();
 
-    this.password = bcrypt.hash(this.password, 12);
+    this.password = await bcrypt.hash(this.password, 12);
 
     next();
 })

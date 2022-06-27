@@ -8,6 +8,11 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const fs = require('fs');
 
+const Movie = require('../../model/movieModel');
+const User = require('../../model/userModel');
+const Category = require('../../model/categoryModel');
+const Shelf = require('../../model/shelfModel');
+
 dotenv.config({ path: './config.env' });
 
 // CONNECT TO DB
@@ -45,6 +50,10 @@ const importData = async () => {
 const deleteData = async () => {
     try {
         // TODO: delete data
+        await Movie.deleteMany();
+        await User.deleteMany();
+        await Category.deleteMany();
+        await Shelf.deleteMany();
 
         console.log('Delete data successfully!');
     } catch (err) {
