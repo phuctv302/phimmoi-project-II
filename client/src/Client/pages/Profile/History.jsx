@@ -27,7 +27,7 @@ const History = () => {
         {movieOrdered.map((order) => (
           <tbody className="TrBody">
             <td>
-              <img src={(`http://127.0.0.1:8000/img/movies/${order.movieCopy.movie.image}`)} />
+              <img src={(`${order.movieCopy.movie.image}`)} />
             </td>
             <td>{order.movieCopy.name}({order.movieCopy.copyId})</td>
             <td>{order.createdAt.slice(0,10)}</td>

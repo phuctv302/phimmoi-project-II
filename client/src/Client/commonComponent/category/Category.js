@@ -25,7 +25,7 @@ function Category(){
                     <Link to={`/movie/${movie._id}`} className="link">
                         <div className="inner">
                         <div className="top">
-                            <img src={(`http://127.0.0.1:8000/img/movies/${movie.image}`)} alt="" />
+                            <img src={(`${movie.image}`)} alt="" />
                         </div>
                         <div className="bottom">
                             <div className="info">

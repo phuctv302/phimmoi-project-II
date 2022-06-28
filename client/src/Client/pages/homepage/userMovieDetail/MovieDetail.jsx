@@ -53,7 +53,7 @@ const UserMovieDetail = () =>{
             <Navbar />
             <div className="detail">
                 <div className="video">
-                    <iframe width="1120" height="630" src={selectedMovie.videoUrl} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="100%" height="100%" src={selectedMovie.videoUrl} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div className="infor">
                     <p className="name">{selectedMovie.name}</p>

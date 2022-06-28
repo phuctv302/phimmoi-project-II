@@ -41,7 +41,7 @@ const SignUp = () => {
             </header>
             <body className="body">
                 <div className="form"  >
-                    <input type="text" name="name" id="name" placeholder="Username" onChange={(e) => setUser({ ...user, name: e.target.value })}></input>
+                    <input type="text" name="name" id="name" placeholder="Your name" onChange={(e) => setUser({ ...user, name: e.target.value })}></input>
                     <input type="email" name="email" id="email" placeholder="email" onChange={(e) => setUser({ ...user, email: e.target.value })}></input>
                     <input type="password" name="password" id="password" placeholder="Mật khẩu" onChange={(e) => setUser({ ...user, password: e.target.value })}></input>
                     <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Nhập lại mật khẩu" onChange={(e) => setUser({ ...user, passwordConfirm: e.target.value })}></input>
