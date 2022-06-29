@@ -11,7 +11,7 @@ function App() {
 		let navigation = null
 		navigation = routes.map((route, index) => {
 			return (
-				(route.path === '/'||route.path === '/login' || route.path === '/movie/:id' || route.path === '/signup' || route.path === '/homeSearch') ?
+				(route.path === '/'||route.path === '/login' || route.path === '/movie/:id' || route.path === '/signup' || route.path === '/homeSearch' || route.path === '/homecategories/:id') ?
 				<Route key={index} exact path={route.path} element = {route.element} />
 				: <Route exact path={route.path} element={<PrivateRoute/>}>
 						<Route exact path={route.path} element={route.element}/>

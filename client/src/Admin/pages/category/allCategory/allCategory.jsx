@@ -3,12 +3,9 @@ import './allCategory.scss'
 import Sidebar from '../../../components/sidebar/Sidebar.js'
 import Navbar from '../../../components/navbar/Navbar'
 import APIapp from '../../../../Client/APIS/APIapp.js'
-import * as MdIcons from 'react-icons/md'
-import * as FiIcons from 'react-icons/fi'
 import * as IoIcons from 'react-icons/io5'
 import Modal from './createModal/create.jsx'
 import { Link } from 'react-router-dom'
-import Update from '../../category/allCategory/updateModal/update.jsx'
 
 
 const AllCategories = () => {
@@ -50,14 +47,10 @@ const AllCategories = () => {
                         </thead>
                         <tbody className="tablebody">
                             {data.map((categories) =>(
-                                <tr key={categories.id } className="row-tb">
+                                <tr key={categories._id } className="row-tb">
                                     <td>{categories.name}</td>
-                                    <td>{categories.moviesQuantity}</td>
                                     <td>
-                                        {/* <MdIcons.MdDeleteOutline className="icon1"/>
-                                        <FiIcons.FiEdit className="icon2"/> */}
-                                        <FiIcons.FiEdit className="icon2" onClick={(e) => {e.preventDefault(); toggleUpdate(); setInfo(categories);}}/>
-                                        <Link to={`/category/allCategory/${categories.id}`} className="link">
+                                        <Link to={`/category/allCategory/${categories._id}`} className="link">
                                             <IoIcons.IoInformationCircleOutline className="icon3"/>
                                         </Link>
                                     </td>
@@ -66,7 +59,6 @@ const AllCategories = () => {
                         </tbody>
                     </table>
                     {modal && <Modal clickMethod = {toggleCreate}/>}
-                    {update && <Update clickMethod ={toggleUpdate} data ={info}/>}
                 </div>
             </div>
         </div>

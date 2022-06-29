@@ -21,7 +21,7 @@ const CatType = () => {
         <Fragment>
         
         {categories.map( (value) => (
-            <Link to={`/categories/${value._id}`} className="link" key={value._id}>
+            <Link to={`/homecategories/${value._id}`} className="link" key={value._id}>
             <div 
                 key={value._id} 
                 className={(click===value._id)?"catName clicked":"catName"}

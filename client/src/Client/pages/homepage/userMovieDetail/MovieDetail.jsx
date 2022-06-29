@@ -48,6 +48,28 @@ const UserMovieDetail = () =>{
         return name
     }
 
+    const handleAdd = async () =>{
+        const res = await APIapp.post(`movies/${id}/shelf`)
+        console.log(res)
+        if(res.data.status === "success"){
+            window.alert(res.data.status)
+        }
+        else{
+            window.alert("Failed")
+        }
+    }
+
+    const handleRemove = async () =>{
+        const res = await APIapp.delete(`movies/${id}/shelf`)
+        console.log(res)
+        if(res.data.status === "success"){
+            window.alert(res.data.status)
+        }
+        else{
+            window.alert("Failed")
+        }
+    }
+
     return (
         <div className="home">
             <Navbar />
@@ -56,7 +78,11 @@ const UserMovieDetail = () =>{
                     <iframe width="1120" height="630" src={selectedMovie.videoUrl} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div className="infor">
-                    <p className="name">{selectedMovie.name}</p>
+                    <div className="nameline">
+                        <p className="name">{selectedMovie.name}</p>
+                        <button className="add" onClick={handleAdd}>Add to shelf</button>
+                        <button className="remove" onClick={handleRemove}>Remove</button>
+                    </div>
                     <div className="categories">
                         <p>Categories: </p>
                         <p>{Getname(selectedMovie.categories[0])}</p>
@@ -68,7 +94,7 @@ const UserMovieDetail = () =>{
                     <p>Produced year: {selectedMovie.year}</p>
                     <p>Director: {selectedMovie.director}</p>
                     <p>Description:</p>
-                    <span>    {selectedMovie.description}</span>
+                    <span>{selectedMovie.description}</span>
                 </div>
             </div>
         </div>  

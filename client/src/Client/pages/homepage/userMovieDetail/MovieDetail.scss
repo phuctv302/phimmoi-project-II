@@ -15,11 +15,34 @@
                 margin-top: 5px;
                 margin-bottom: 5px;
             }
-            .name{
-                font-size: 40px;
-                margin-top: 20px;
-                margin-left: 20px;
-                margin-bottom: 20px;
+            .nameline{
+                display: flex;
+                flex-direction: row;
+                .name{
+                    font-size: 40px;
+                    margin-top: 20px;
+                    margin-left: 20px;
+                    margin-bottom: 20px;
+                }
+                .add{
+                    width: 120px;
+                    height: 40px;
+                    margin-top: 22px;
+                    border-radius: 5px;
+                    background-color: #4CB307;
+                    margin-left: 20px;
+                }
+                .remove{
+                    width: 90px;
+                    height: 40px;
+                    margin-top: 22px;
+                    border-radius: 5px;
+                    background-color: #ABAEAA;
+                    margin-left: 20px;
+                }
+                button:hover{
+                    cursor: pointer;
+                }
             }
             .categories{
                 display: flex;

@@ -16,6 +16,7 @@ import Intro from '../Client/pages/intro/Intro.js'
 import HomeSearch from '../Client/pages/intro/Search/Search.jsx'
 import UserMovieDetail from '../Client/pages/homepage/userMovieDetail/MovieDetail.jsx'
 import HomeMovieDetail from '../Client/pages/intro/homeMovieDetail/MovieDetail.jsx'
+import HomeCategory from '../Client/pages/intro/category/Category.js'
 
 const routes = [
   {
@@ -65,6 +66,10 @@ const routes = [
   {
     path: "/categories/:id",
     element: <Category />,
+  },
+  {
+    path: "/homecategories/:id",
+    element:<HomeCategory/>
   },
   {
     path: "/adminHome",

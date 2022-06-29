@@ -78,11 +78,11 @@ const ReadMovie = () => {
                             <span>Company: {selectedMovie.company}</span>
                             <span>Director: {selectedMovie.director}</span>
                             <div className="categories">
-                                <span>Categories: {Getname(selectedMovie.categories[1])}</span>
-                                <span>{Getname(selectedMovie.categories[0])}, </span>
-                                <span>{Getname(selectedMovie.categories[1])}, </span>
-                                <span>{Getname(selectedMovie.categories[2])}, </span>
-                                <span>{Getname(selectedMovie.categories[3])}, </span>
+                                <span>Categories:  </span>
+                                <span>{Getname(selectedMovie.categories[0])} </span>
+                                <span>{Getname(selectedMovie.categories[1])} </span>
+                                <span>{Getname(selectedMovie.categories[2])} </span>
+                                <span>{Getname(selectedMovie.categories[3])} </span>
                             </div>
                             <span>Produced year: {selectedMovie.year}</span>
                             <span>Description: {selectedMovie.description}</span>

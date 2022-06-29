@@ -33,7 +33,7 @@ const AddMovie = () => {
     const handleCreate = async (e) => {
         e.preventDefault()
         const newMovie = await dispatch(createMovie(movie));
-        newMovie.payload.data != null ? toast.success("success", {autoClose: 2000 }) : toast.error(newMovie.payload.error.message, {autoClose: 4000 }) 
+        newMovie.payload.data != null ? window.alert("Success!") : window.alert(newMovie.payload.error.message) 
     }
 
 

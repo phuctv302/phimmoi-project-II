@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.scss";
-import { Notifications, ArrowDropDown, Search } from "@material-ui/icons";
+import { Notifications, ArrowDropDown, Search, Bookmark } from "@material-ui/icons";
+import BookmarkIcon from "@material-ui/icons"
 import CatType from "./catType/CatType";
 import { createGlobalStyle } from "styled-components";
-
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchAsyncSearch } from "../../../redux/slice/movieSLice";
@@ -15,21 +15,16 @@ import APIapp from '../../APIS/APIapp.js'
 const Navbar = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [search, setSearch] = useState("");
-  const [isNotification, setIsNotification] = useState(false);
-  const [numNotifications, setNumNotifications] = useState(0)
+  const [isShelf, setIsShelf] = useState(false);
+  const [numShelfs, setNumShelfs] = useState(0)
   const [textInput, setTextInput] = useState([]);
   const [filterData, setFilterData] = useState([]);
-  const[notifications, setNotifications] = useState([]);
+  const[shelfs, setShelfs] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [img, setImg]=useState(null)
 
-  useEffect( async () =>{
-    const res= await APIapp.get('/users/me')
-    setImg(res.data.data.user.photo);
-    // console.log(res.data.data.user.photo);
-  },[])
 
   const user = useSelector(state => state.user)
   // console.log(user);
@@ -39,7 +34,7 @@ const Navbar = () => {
   // category options
   const handleOnClicked = () => {
     setIsClicked(!isClicked);
-    if(isNotification) setIsNotification(!isNotification);
+    if(isShelf) setIsShelf(!isShelf);
   };
   // to profile page
   const handleProfile = () => {
@@ -49,14 +44,14 @@ const Navbar = () => {
   const handleHome = () => {
     navigate("/userHome");
   };
-  //notifications
-  const handleNotificationClick = async () => {
-    setIsNotification(!isNotification);
+  //shelfs
+  const handleShelfClick = async () => {
+    setIsShelf(!isShelf);
     if(isClicked) setIsClicked(!isClicked);
     try {
-      const response = await APIapp.get("users/notifications")
-      console.log(response.data.data.notifications)
-      setNotifications(response.data.data.notifications)
+      const response = await APIapp.get("movies/shelf")
+      console.log(response.data.data.movies)
+      setShelfs(response.data.data.movies)
     } catch (err) {
         console.log(err.response.data.message)
     }
@@ -92,17 +87,20 @@ const Navbar = () => {
   };
 
   
-  let renderNotifications = ""
-  renderNotifications = notifications!=null? (notifications.map((notification) => (
-    <p>{notification.message}</p>
+  let renderShelfs = ""
+  renderShelfs = shelfs!=null? (shelfs.map((shelf) => (
+    <Link to={`/userHome/movie/${shelf.id}`} className="rendershelf">
+      <img src={shelf.image} alt="" />
+      <p>{shelf.name}</p>
+    </Link>
   ))) : (
     <p>wait a minute</p>
   )
 
-  const { numUnreadNotifications } = useSelector((state) => state.user.user)
+  const { numUnreadShelfs } = useSelector((state) => state.user.user)
   useEffect( () => {
-    setNumNotifications(numUnreadNotifications)
-  }, [numUnreadNotifications])
+    setNumShelfs(numUnreadShelfs)
+  }, [numUnreadShelfs])
   
 
   return (
@@ -142,12 +140,12 @@ const Navbar = () => {
               <CatType />
             </div>
           </div>
-          <div className="notification"onClick={handleNotificationClick}>
-            <Notifications />
-            {numNotifications ? <span className="badge">{numNotifications}</span> : <></>}
-            <div className={isNotification ? "notificationTable clicked" : "notificationTable"}>
+          <div className="shelf"onClick={handleShelfClick}>
+            <Bookmark/>
+            {numShelfs ? <span className="badge">{numShelfs}</span> : <></>}
+            <div className={isShelf ? "shelfTable clicked" : "shelfTable"}>
               <Scrollbars className="scrollbar">
-                    {renderNotifications}
+                    {renderShelfs}
               </Scrollbars>
             </div>
           </div>

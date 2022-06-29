@@ -23,7 +23,7 @@ const MovieofCategory = () => {
     
     renderMovies = allMovie != null ? (
         allMovie.map((movie) => (
-            <Movie key = {movie._id} data = {movie} />
+            <Movie key = {movie.id} data = {movie} />
         ))
     ) : (
         <div className="error">

@@ -37,11 +37,11 @@ const Login = () => {
             console.log('auth', isAuth);
 
             if (isAuth.payload === "Incorrect email or password") {
-                toast.error(isAuth.payload, {autoClose: 2000 })
+                window.alert(isAuth.payload)
                 return dispatch(loginFail(isAuth.payload));
             }
             if (isAuth.payload === "Your account has been blocked for some reasons. Please contact us for supports or create a new account") {
-                toast.error(isAuth.payload, {autoClose: 5000 })
+                window.alert(isAuth.payload)
                 return dispatch(loginFail(isAuth.payload));
             }
             console.log(isAuth.payload)

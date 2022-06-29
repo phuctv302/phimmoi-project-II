@@ -4,9 +4,9 @@ import './Category.scss';
 import Navbar from '../navbar/Navbar'
 import { useParams } from "react-router";
 import { useDispatch } from 'react-redux'
-import {getMovieOnCategory} from '../../../redux/slice/categorySlice'
+import {getMovieOnCategory} from '../../../../redux/slice/categorySlice'
 import {Link} from 'react-router-dom'
-function Category(){
+function HomeCategory(){
     
     const dispatch = useDispatch()
     const {id} = useParams();
@@ -44,4 +44,4 @@ function Category(){
     )
 
 }
-export default Category;
+export default HomeCategory;

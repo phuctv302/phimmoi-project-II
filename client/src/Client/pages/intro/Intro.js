@@ -26,7 +26,7 @@ const Intro = () => {
     return (
         <div className="home">
             <Navbar />
-            <List title="Sách mới nhất" data = {recentlyMovie} />          
+            <List title="Newest Film" data = {recentlyMovie} />          
         </div>
     )
 }

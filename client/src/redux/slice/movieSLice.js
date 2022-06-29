@@ -31,7 +31,7 @@ export const top5Movie = createAsyncThunk('user/top5Movie', async () => {
 
 export const getRecentlyMovie = createAsyncThunk('user/getRecentlyMovie', async () => {
     try {
-        const response = await APIapp.get('movies?sort=-createdAt&limit=24')
+        const response = await APIapp.get('movies?sort=-createdAt&limit=15')
         return response.data
     } catch (err) {
         return err.response.data.message
