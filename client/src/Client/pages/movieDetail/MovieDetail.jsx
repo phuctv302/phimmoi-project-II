@@ -9,6 +9,7 @@ import * as FcIcons from 'react-icons/fc'
 import * as IoIcons from 'react-icons/io'
 import { Notifications, DoNotDisturbOffOutlined } from "@material-ui/icons"
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MovieDetail = () => {
   const { id } = useParams();

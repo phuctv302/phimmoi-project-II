@@ -25,11 +25,11 @@ const SignUp = () => {
         const res = await dispatch(signUpUser(user));
         console.log(res)
         if(res.payload.status === 'success') {
-            window.alert("Sign up success")
+            toast.success("Sign up success", {autoClose: 2000})
             navigate('/login')
         }
         if(res.payload.status === 'error') {
-            window.alert(res.payload.message)
+            toast.error(res.payload.message, {autoClose: 2000})
         }
     }
     console.log(user)
