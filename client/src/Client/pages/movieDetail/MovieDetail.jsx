@@ -45,7 +45,7 @@ const MovieDetail = () => {
       <div className="container">
         <div className="wrapper">
           <div className="left">
-            <img src={(`http://127.0.0.1:8000/img/movies/${selectedMovie.image}`)} alt="" />
+            <img src={(`${selectedMovie.image}`)} alt="" />
           </div>
           <div className="right">
             <div className="up">

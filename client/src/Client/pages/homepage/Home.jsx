@@ -27,7 +27,7 @@ const Home = () => {
     return (
         <div className="home">
             <Navbar />
-            <List title="Newes Film" data = {recentlyMovie} />
+            <List title="Newest Film" data = {recentlyMovie} />
             
         </div>
     )

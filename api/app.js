@@ -34,13 +34,13 @@ app.options('*', cors()); // for patch, delete, cookie,...
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Prevent too many requests from 1 IP in 1 hour
-const limiter = rateLimit({
-    max: 100,
-    windowMs: 60 * 60 * 24,
-    message: 'Too many requests from this IP, please try again in 1 hour!',
-});
+// const limiter = rateLimit({
+//     max: 100,
+//     windowMs: 60 * 60 * 24,
+//     message: 'Too many requests from this IP, please try again in 1 hour!',
+// });
 
-app.use('/api', limiter);
+// app.use('/api', limiter);
 
 // See log request detail
 if (process.env.NODE_ENV === 'development') {

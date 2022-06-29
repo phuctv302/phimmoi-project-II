@@ -75,6 +75,13 @@
     .right {
       display: flex;
       align-items: center;
+	  p{
+		cursor: pointer;
+		margin-right: 20px;
+		&:hover {
+			color: aqua;
+		}
+	  }
       .category {
         p {
           cursor: pointer;
