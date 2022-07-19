@@ -46,10 +46,18 @@
                 margin-bottom: 2px;
             }
         }
-        .edit {
+        button{
             cursor: pointer;
-            width: 25px;
-            height: 25px;
+            height: 40px;
+            width: 120px;
+            margin-top: 10px;
+            border-radius: 5px;
+            background-color: var(--purple);
+            color: #ffffff;
+        }
+        .butt{
+            display: flex;
+            flex-direction: column;
         }
     }
     .down {
