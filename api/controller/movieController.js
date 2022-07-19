@@ -174,8 +174,8 @@ exports.createMovie = catchAsync(async (req, res, next) => {
 
 /* UPDATE MOVIE BY ID */
 exports.updateMovie = catchAsync(async (req, res, next) => {
-    const updateMovie = await Movie.findOneAndUpdate(
-        { id: req.params.id },
+    const updateMovie = await Movie.findByIdAndUpdate(
+        req.params.id ,
         req.body,
         {
             runValidators: true,
@@ -220,7 +220,7 @@ exports.deleteMovie = catchAsync(async (req, res, next) => {
     }
 
     // delete movie
-    const deleteMovie = await Movie.findOneAndDelete({ id: req.params.id });
+    const deleteMovie = await Movie.findByIdAndDelete(req.params.id );
 
     if (!deleteMovie) return next(new AppError('No movie found!', 404));
 
