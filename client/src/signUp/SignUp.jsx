@@ -3,9 +3,6 @@ import './SignUp.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { signUpUser } from '../redux/slice/authSlice.js'
 import { useNavigate } from 'react-router-dom'
-import * as Yup from 'yup'
-import { useForm } from "react-hook-form";
-import {yupResolver} from '@hookform/resolvers/yup'
 import { ToastContainer, toast } from 'react-toastify'
 
 

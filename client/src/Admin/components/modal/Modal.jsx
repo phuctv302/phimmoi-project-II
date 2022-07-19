@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Modal.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { setSelectedMovieAd, updateMovie } from '../../../redux/slice/movieSLice'
 import { useParams } from "react-router"
 import APIapp from '../../../Client/APIS/APIapp'
 import { getCategory } from '../../../redux/slice/categorySlice.js'

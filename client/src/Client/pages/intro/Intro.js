@@ -13,8 +13,6 @@ const Intro = () => {
     const [events, setEvent] = useState([])
     const dispatch = useDispatch();
     useEffect(async () => {
-        await dispatch(fetchAsyncUser());
-        await dispatch(getUserProfile())
         const recentlyMovies = await dispatch(getRecentlyMovie())
         dispatch(RecentlyMovie(recentlyMovies.payload.data.movies))
         const categories = await dispatch(getCategory())

@@ -5,15 +5,15 @@ import Navbar from '../../../components/navbar/Navbar'
 import { getMovieDetail, getCopyOnMovie, setSelectedMovieAd } from '../../../../redux/slice/movieSLice.js'
 import { useDispatch } from 'react-redux'
 import { useParams } from "react-router"
-import * as FiIcons from 'react-icons/fi'
-import * as FcIcons from 'react-icons/fc'
 import Modal from '../../../components/modal/Modal'
+import Update from '../../../components/update/Update'
 import APIapp from '../../../../Client/APIS/APIapp'
 
 const ReadMovie = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const [modal, setModal] = useState(false);
+    const [update, setUpdate] = useState(false)
     const [categories, setCategories] = useState([])
     const [selectedMovie, setSelectedMovie] = useState({
         actors: [], 
@@ -45,6 +45,10 @@ const ReadMovie = () => {
     const toggleModal = (event) => {
         event.preventDefault();
         setModal(!modal);
+    };
+    const toggleUpdate = (event) => {
+        event.preventDefault();
+        setUpdate(!update)
     };
     
     const Getname = (id) =>{
@@ -87,12 +91,17 @@ const ReadMovie = () => {
                             <span>Produced year: {selectedMovie.year}</span>
                             <span>Description: {selectedMovie.description}</span>
                         </div>
-                        <FiIcons.FiEdit color="var(--purple)" className="edit" onClick={toggleModal}/>
+                        <div className="butt">
+                            <button onClick={toggleModal}>Update category</button>
+                            <button onClick={toggleUpdate}>Delete movie</button>
+                        </div>
+                        
                     </div>
                     <div>
                     <iframe width="100%" height="100%" src={selectedMovie.videoUrl} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     {modal && <Modal clickMethod = {toggleModal} />}
+                    {update && <Update clickMethod = {toggleUpdate}/>}
                 </div>
             </div>
             
